@@ -10,15 +10,16 @@ import { useDispatch } from 'react-redux';
 
 const ContactList = () => {
     const contacts = useSelector(getContacts);
-    const filter = useSelector(getFilter);
+    const filterContacts = useSelector(getFilter);
     const dispatch = useDispatch();
+
   
     const handleDelete = contactId => {
       dispatch(deleteContact({contactId}));
     };
   return (
     <ul>
-      {contacts.filter((contact) => contact.name.toLowerCase().includes(filter.toLowerCase()))
+      {contacts.filter((contact) => contact.name.toLowerCase().includes(filterContacts.toLowerCase()))
         .map((contact) => {
           return (
             <Contact key={contact.id}>
