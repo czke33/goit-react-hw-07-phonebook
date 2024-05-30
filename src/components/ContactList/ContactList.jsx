@@ -12,8 +12,9 @@ const ContactList = () => {
     const contacts = useSelector(getContacts);
     const filterContacts = useSelector(getFilter);
     const dispatch = useDispatch();
-
-  
+    
+   //const entries = Object.entries(contacts);
+  //console.log(contacts);
     const handleDelete = contactId => {
       dispatch(deleteContact({contactId}));
     };
@@ -23,7 +24,7 @@ const ContactList = () => {
         .map((contact) => {
           return (
             <Contact key={contact.id}>
-              {contact.name} : {contact.number}{' '}
+              {contact.name} : {contact.phone}{' '}
               <button id={contact.id} onClick={()=>handleDelete(contact.id)}>
                 Delete
               </button>

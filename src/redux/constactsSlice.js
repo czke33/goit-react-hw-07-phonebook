@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {fetchContacts, addContact, deleteContact} from './operations';
 
 const initialState = {
-  contacts: [],
+  items: [],
   isLoading: false,
   error: null,};
 
@@ -42,14 +42,15 @@ const contactsSlice = createSlice({
     .addCase(deleteContact.fulfilled, (state, action)=>{
       state.isLoading = false;
       state.error=null;
-      const index = state.items.findIndex(contact => contact.id === action.payload);
+      const index = state.items.findIndex(contact =>
+         contact.id === action.payload.id);
     state.items.splice(index, 1);
     })
     .addCase(deleteContact.rejected, (state, action)=>{
       state.isLoading = false;
       state.error = action.payload;
-    })
-  }
+    });
+  },
 });
 
 export const contactsReducer = contactsSlice.reducer;
